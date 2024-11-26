@@ -28,18 +28,18 @@ today_str = today.strftime("%Y-%m-%d")
 
 # 将数据转换为字典，以日期为键
 data_dict = {item["date"]: item["data"] for item in data_storage}
-# if date_to_access in data_dict:
-#     # 将每一条数据映射为键值对
-#     minute_volume_dict_yesterday = {
-#         entry["minute"]: entry["volume"] for entry in data_dict[date_to_access]
-#     }
-#     # minute_volume_dict_today = {
-#     #     entry["minute"]: entry["volume"] for entry in data_dict[today_str]
-#     # }
-#     print(f"获取到{date_to_access} 的分钟成交量数据，并做映射")
-#     print(minute_volume_dict_today)
-# else:
-#     print(f"没有找到 {date_to_access} 的数据。")
+if date_to_access in data_dict:
+    # 将每一条数据映射为键值对
+    minute_volume_dict_yesterday = {
+        entry["minute"]: entry["volume"] for entry in data_dict[date_to_access]
+    }
+    minute_volume_dict_today = {
+        entry["minute"]: entry["volume"] for entry in data_dict[today_str]
+    }
+    print(f"获取到{date_to_access} 的分钟成交量数据，并做映射")
+    print(minute_volume_dict_today)
+else:
+    print(f"没有找到 {date_to_access} 的数据。")
 
 minute_volume_dict_today = {}
 
@@ -117,6 +117,7 @@ def draw_conclusion():
     end_time_9 = datetime.strptime("14:52:00", "%H:%M:%S").time()
     now = datetime.now()
     flag = 0
+    # 下面的if语句可以使用 if elif else 结构来简化代码逻辑
     if start_time_1 < now.time() < end_time_1:
         flag = 1
     if start_time_2 < now.time() < end_time_2:
