@@ -1,1 +1,2 @@
 plotly==5.19.0
+schedule==1.2.2
